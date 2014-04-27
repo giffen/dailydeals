@@ -6,6 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+		(r'^accounts/', include('registration.backends.default.urls')),
 		url(r'^$', 'dailydeals.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
 )
