@@ -25,5 +25,6 @@ def CreateStripeId(sender, user, request, **kwargs):
 		new_id.stripe_id = stripe_cust.id
 		new_id.save()
 	else:
-		print "Stripe has been created %s" %new_id	
+		print "Stripe has been created %s" %new_id
+			
 user_logged_in.connect(CreateStripeId)
