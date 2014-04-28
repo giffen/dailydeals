@@ -54,5 +54,6 @@ docs/_build/
 
 *.sqlite3
 email_info.py
+stripe_info.py
 */migrations
 */live
