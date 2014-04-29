@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'south',
     'profiles',
     'deals',
+    'contact',
 )
 
 # Registration Settings

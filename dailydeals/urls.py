@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 		(r'^accounts/', include('registration.backends.default.urls')),
 		url(r'^$', 'dailydeals.views.home', name='home'),
+		url(r'^contact/$', 'contact.views.contact', name='contact_us'),
     url(r'^admin/', include(admin.site.urls)),
 )
 
