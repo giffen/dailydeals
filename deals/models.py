@@ -1,4 +1,10 @@
+import datetime
 from django.db import models
+
+class DealManager(models.Manager):
+	def get_featured_deals(self):
+		#return super(DealManager, self).filter(featured=True).filter(expire_date__gt=datetime.datetime)
+		return super(DealManager, self).filter(featured=True)
 
 class Deal(models.Model):
 	title = models.CharField(max_length=120)
@@ -13,6 +19,8 @@ class Deal(models.Model):
 	active = models.BooleanField(default=True)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+	objects = DealManager()
 
 	def __unicode__(self):
 		return self.title
