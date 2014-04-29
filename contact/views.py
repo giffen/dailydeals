@@ -6,7 +6,8 @@ from .models import Contact
 from .forms import ContactForm
 
 def contact(request):
-
+	form_title = 'Contact Us'
+	button_submit = 'Send Message'
 	form = ContactForm(request.POST or None)
 
 	if form.is_valid():
