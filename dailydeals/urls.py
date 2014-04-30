@@ -12,9 +12,9 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
 
-    #url(r'^deals/2014/$', 'news.views.all_2014_deals'),
-    #url(r'^deals/([0-9]{4})/$', 'news.views.year_archive'),
-    #url(r'^deals/([0-9]{4})/([0-9]{2})/$', 'news.views.month_archive'),
+    url(r'^deals/$', 'deals.views.all_deals'),
+    url(r'^deals/(?P<year>\d{4})/$', 'deals.views.year_archive'),
+    url(r'^deals/(?P<year>\d{4})/(?P<month>\d{2})/$', 'deals.views.month_archive'),
     url(r'^deals/(?P<year>\d{4})/(?P<month>\d{2})/(?P<slug>.*)/$',
 	    		 'deals.views.deal_detail', 
 	    		 	name='deal_detail'),
