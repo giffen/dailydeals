@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     #url(r'^deals/2014/$', 'news.views.all_2014_deals'),
     #url(r'^deals/([0-9]{4})/$', 'news.views.year_archive'),
     #url(r'^deals/([0-9]{4})/([0-9]{2})/$', 'news.views.month_archive'),
-    url(r'^deals/(?P<year>\d{4})/(?P<month>\d{2})/(?P<slug>.*)/$', 'news.views.deal_detail'),
+    url(r'^deals/(?P<year>\d{4})/(?P<month>\d{2})/(?P<slug>.*)/$', 'deals.views.deal_detail'),
 )
 
 if settings.DEBUG:
