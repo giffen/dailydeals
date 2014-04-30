@@ -4,4 +4,18 @@ from .models import Deal
 
 def deal_detail(request, year, month, slug):
 
-	return render(request, 'deals/deal_detail.html', locals())
+	try:
+		post = Deal.objects.get(slug=slug)
+	except Deal.MultipleObjectsReturned: 
+		post = Deal.objects.filter(slug=slug)[0]
+	except:
+		raise Http404
+
+	context = {
+		'year':year,
+		'month':month,
+		'slug':slug,
+		'post':post
+	}
+
+	return render(request, 'deals/deal_detail.html', context)
