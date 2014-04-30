@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.core.urlresolvers import reverse
 
 class DealManager(models.Manager):
 	def get_featured_deals(self):
@@ -25,3 +26,14 @@ class Deal(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
+	def get_absolute_url(self):
+		year = self.publication_date.strftime("%Y")
+		month = self.publication_date.strftime("%m")
+		slug = self.slug
+		return reverse('deal_detail', args=[year, month, slug])
+		'''
+		return "deals/%s/%s/%s/" %(self.publication_date.strftime("%Y"), 
+															self.publication_date.strftime("%m"), 
+															self.slug)
+		'''
