@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Deal
+
+def deal_detail(request, year, month, slug):
+
+	return #http response
