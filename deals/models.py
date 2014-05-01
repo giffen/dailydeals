@@ -3,10 +3,21 @@ from django.db import models
 from django.core.urlresolvers import reverse
 
 class DealManager(models.Manager):
+	def all(self):
+		return super(DealManager, self).filter(active=True)
+
 	def get_featured_deals(self):
 		#return super(DealManager, self).filter(featured=True).filter(expire_date__gt=datetime.datetime)
 		return super(DealManager, self).\
 		filter(featured=True)
+	
+	'''
+	def filter_by_year(self, year):
+		return self.all().filter(publication_date__year=year)
+
+	def filter_by_month(self, year, month):
+		return self.all().filter(publication_date__year=year).filter(publication_date__month=month)
+	'''
 
 class Deal(models.Model):
 	title = models.CharField(max_length=120)

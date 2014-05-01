@@ -4,8 +4,8 @@ from django.shortcuts import render, Http404
 from .models import Deal
 
 def all_deals(request):
-	all_posts = Deal.objects.filter(featured=True)
-	paginator = Paginator(all_posts, 2) # Show 25 contacts per page
+	all_posts = Deal.objects.all()
+	paginator = Paginator(all_posts, 24) # Show 25 contacts per page
 
 	page = request.GET.get('page')
 	try:
@@ -21,14 +21,31 @@ def all_deals(request):
 
 
 def year_archive(request, year):
-	posts = Deal.objects.filter(publication_date__year=year)
+	all_posts = Deal.objects.all().filter(publication_date__year=year)
+	paginator = Paginator(all_posts, 24) # Show 25 contacts per page
 
+	page = request.GET.get('page')
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		posts = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		posts = paginator.page(paginator.num_pages)
+
+	if all_posts.count() == 0:
+		raise Http404
+		
 	return render(request, 'deals/all.html', locals())
 
 
 def month_archive(request, year, month):
-	posts = Deal.objects.filter(publication_date__year=year).\
+	posts = Deal.objects.all().filter(publication_date__year=year).\
 															filter(publication_date__month=month)
+
+	if posts.count() == 0:
+		raise Http404
 
 	return render(request, 'deals/all.html', locals())
 
